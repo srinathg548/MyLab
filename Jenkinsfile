@@ -23,6 +23,11 @@ pipeline{
             }
         }
 
+        stage ('Publish to Nexus') {
+            steps {
+                nexusArtifactUploader artifacts: [[artifactId: 'SrinathDevOpsLab', classifier: '', file: 'target/SrinathDevOpsLab-0.0.9-SNAPSHOT', type: 'war']], credentialsId: 'a9879a3a-bc92-42a8-8331-17b20a4a85fb', groupId: 'com.vinaysdevopslab', nexusUrl: '3.139.86.194:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'srinath-SNAPSHOTS', version: '0.0.9-SNAPSHOT'
+            }
+        }
         // Stage3 : Testing
         stage ('Deploy'){
             steps {
